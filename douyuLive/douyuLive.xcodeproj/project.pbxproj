@@ -15,7 +15,7 @@
 		6D9E10CC2289467A00F6A94B /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D9E10CA2289467A00F6A94B /* Home.storyboard */; };
 		6D9E10CF228946F100F6A94B /* Follow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D9E10CD228946F100F6A94B /* Follow.storyboard */; };
 		6D9E10D22289472A00F6A94B /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D9E10D02289472A00F6A94B /* Profile.storyboard */; };
-		6D9E10D42289565800F6A94B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9E10D32289565800F6A94B /* MainViewController.swift */; };
+		6D9E10DC22895D7900F6A94B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9E10DB22895D7900F6A94B /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		6D9E10CB2289467A00F6A94B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		6D9E10CE228946F100F6A94B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Follow.storyboard; sourceTree = "<group>"; };
 		6D9E10D12289472A00F6A94B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
-		6D9E10D32289565800F6A94B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		6D9E10DB22895D7900F6A94B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = douyuLive/Classes/Main/MainViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +71,52 @@
 			path = douyuLive;
 			sourceTree = "<group>";
 		};
+		6D9E10D522895CBD00F6A94B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6D9E10D622895CBD00F6A94B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6D9E10D722895CBD00F6A94B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6D9E10D822895D0000F6A94B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			path = douyuLive/Classes/Home/View;
+			sourceTree = SOURCE_ROOT;
+		};
+		6D9E10D922895D0000F6A94B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6D9E10DB22895D7900F6A94B /* MainViewController.swift */,
+			);
+			name = Controller;
+			path = douyuLive/Classes/Home/Controller;
+			sourceTree = SOURCE_ROOT;
+		};
+		6D9E10DA22895D0000F6A94B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			path = douyuLive/Classes/Home/Model;
+			sourceTree = SOURCE_ROOT;
+		};
 		6DC0027B2285854C0077BF0E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +133,9 @@
 		6DC0027C2285854C0077BF0E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				6D9E10D522895CBD00F6A94B /* Controller */,
+				6D9E10D622895CBD00F6A94B /* Model */,
+				6D9E10D722895CBD00F6A94B /* View */,
 				6D9E10CA2289467A00F6A94B /* Home.storyboard */,
 			);
 			path = Home;
@@ -127,7 +176,9 @@
 			isa = PBXGroup;
 			children = (
 				6D9E10C122891B7800F6A94B /* Main.storyboard */,
-				6D9E10D32289565800F6A94B /* MainViewController.swift */,
+				6D9E10D922895D0000F6A94B /* Controller */,
+				6D9E10DA22895D0000F6A94B /* Model */,
+				6D9E10D822895D0000F6A94B /* View */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -207,8 +258,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D9E10DC22895D7900F6A94B /* MainViewController.swift in Sources */,
 				6D3A56632285501700362383 /* AppDelegate.swift in Sources */,
-				6D9E10D42289565800F6A94B /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
