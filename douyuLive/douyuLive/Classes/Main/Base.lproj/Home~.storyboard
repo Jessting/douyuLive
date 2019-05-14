@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eM4-Xf-Dtd">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="I5p-fl-TzH">
+            <objects>
+                <tabBarController id="eM4-Xf-Dtd" customClass="MainViewController" customModule="douyuLive" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wvz-gO-hx9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dVZ-bs-Uiw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-29" y="1311"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rI0-Q9-Rs4">
+            <objects>
+                <viewController id="fVD-oJ-cvG" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CFf-5L-65j">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="W9W-kJ-1Oc"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lqX-K7-tj8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9UO-rE-Gx3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2571.0144927536235" y="2147.5446428571427"/>
+        </scene>
+        <!--首页-->
+        <scene sceneID="evs-yp-cab">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zfy-bK-tUz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="首页" id="2NL-9e-dhP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="e3m-Xw-5GQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fVD-oJ-cvG" kind="relationship" relationship="rootViewController" id="ejW-7d-nir"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x3q-ug-j9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1276.8115942028987" y="1473.8839285714284"/>
+        </scene>
+    </scenes>
+</document>
