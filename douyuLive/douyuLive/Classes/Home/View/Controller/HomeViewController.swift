@@ -6,11 +6,11 @@
 //  Copyright © 2019 FDC. All rights reserved.
 
 /* 首页布局-页面分析：
- 1、封装 PageTitleView
+一、封装 PageTitleView
     1）自定义 view, 并且自定义构造函数
-    2）添加子控件：UIScrollView
- 2、封装 PageContentView
- 3、处理 PageTitleView & PageContentView 的逻辑
+    2）添加子控件：UIScrollView ； 设置 TitleLabel ； 设置顶部的线段
+ 二、封装 PageContentView
+ 三、处理 PageTitleView & PageContentView 的逻辑
 */
 
 import UIKit
@@ -32,6 +32,31 @@ class HomeViewController: UIViewController {
         
         return titleView
     }()
+    
+    // MASK:-懒加载属性（1、延迟加载，减少内存的消耗；2、可以解除报包的烦恼）
+    private lazy var pageContentView: PageContentView = {
+        
+        // 1、确定内容的 frame
+        let contentH = kScreenH - kStatusBarH - kNavigationH - kTitleViewH
+        let contentFrame = CGRect(x: 0, y: kStatusBarH + kNavigationH + kTitleViewH, width: kScreenW, height: contentH)
+        
+        // 2、确定所有的子控制器
+        var childVcs = [UIViewController] ()
+        
+        for _ in 0..<4 {
+            let vc = UIViewController()
+            
+            // arc4random_uniform() 是随机函数
+            vc.view.backgroundColor = UIColor(r: CGFloat(arc4random_uniform(255)), g: CGFloat(arc4random_uniform(255)), b: CGFloat(arc4random_uniform(255)))
+            
+            childVcs.append(vc)
+            
+        }
+        
+        let contentView  = PageContentView(frame: contentFrame, childVcs: childVcs, parentViewController: self)
+        
+        return contentView
+    } ()
     
    // MASK:-系统回调函数
     override func viewDidLoad() {
@@ -56,6 +81,10 @@ extension HomeViewController {
         // 2、添加 TitleView，拿到控制器 view，添加自定义配件 view
         view.addSubview(pageTitleView)
         
+        // 3、添加 ContentView
+        view.addSubview(pageContentView)
+        // 为了能看见 ContentView，先添加一个背景颜色
+        pageContentView.backgroundColor = UIColor.purple
     }
     
     // 设置首页导航栏

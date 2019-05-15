@@ -123,6 +123,7 @@ extension PageTitleView {
        
         // 2.2 设置scrollLine 的属性
         scrollView.addSubview(scrollLine)
-        scrollLine.frame = CGRect(x: firstLabel.frame.origin.x, y: frame.height - kScrollLineH, width: firstLabel.frame.width, height: kScrollLineH)
+        scrollLine.frame = CGRect(x: firstLabel.frame.origin.x, y: frame.height - kScrollLineH,
+                                  width: firstLabel.frame.width, height: kScrollLineH)
     }
 }
