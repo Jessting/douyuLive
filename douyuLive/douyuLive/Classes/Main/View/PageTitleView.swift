@@ -8,13 +8,23 @@
 
 import UIKit
 
+// 事件协议（代理）：先把事件行为发送给home，home在通知给pageContentView
+// : class 此协议只能被类class 遵守
+protocol PageContentViewDelegate: class  {
+    func pageTitleView(titleView: PageTitleView, selectedIndex index: Int)
+}
+
 // 设置滚动条高度-常量（以k开头）
 private let kScrollLineH: CGFloat = 2
 
 class PageTitleView: UIView {
 
     // msk:-定义属性
+    private var currentIndex: Int = 0  // 当前页面的下标值
     private var titles: [String]
+    
+    //代理协议属性，一般用 weak
+    weak var delegate: PageContentViewDelegate?
     
     // MASK:-懒加载一个数组
     private lazy var titleLabels: [UILabel] = [UILabel] ()
@@ -103,6 +113,11 @@ extension PageTitleView {
             // 4、将 label 添加到 scrollView 中
             scrollView.addSubview(label)
             titleLabels.append(label)
+            
+            // 5、给 label 添加手势
+            label.isUserInteractionEnabled = true
+            let tapGes = UITapGestureRecognizer(target: self, action: #selector(self.titleLabelClick(tapGes:)))
+            label.addGestureRecognizer(tapGes)
         }
     }
     
@@ -125,5 +140,38 @@ extension PageTitleView {
         scrollView.addSubview(scrollLine)
         scrollLine.frame = CGRect(x: firstLabel.frame.origin.x, y: frame.height - kScrollLineH,
                                   width: firstLabel.frame.width, height: kScrollLineH)
+    }
+}
+
+// MASK:-监听 Label 的点击，对 PageContentView 的扩展
+extension PageTitleView {
+    
+    // 是事件机制的话，前面要添加 @obj
+    @objc private func titleLabelClick(tapGes: UITapGestureRecognizer) {
+        // print("++++++++")  // 测试
+        
+        // 1、获取当前 Label
+        guard let currentLabel =  tapGes.view as? UILabel else {
+            return
+        }
+        
+        // 2、获取之前 Label
+        let oldLabel = titleLabels[currentIndex]
+        
+        // 3、切换文字的颜色
+        currentLabel.textColor = UIColor.orange
+        oldLabel.textColor = UIColor.darkGray
+        
+        // 4、保存最新 Label 的下标值
+        currentIndex = currentLabel.tag
+        
+        // 5、滚动条位置发生改变
+        let scrollLineX = CGFloat(currentLabel.tag) * scrollLine.frame.width
+        UIView.animate(withDuration: 0.15) {
+            self.scrollLine.frame.origin.x = scrollLineX
+        }
+        
+        // 6、通知代理（用协议）
+        delegate?.pageTitleView(titleView: self, selectedIndex: currentIndex)
     }
 }

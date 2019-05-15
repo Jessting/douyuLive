@@ -11,6 +11,7 @@
     2）添加子控件：UIScrollView ； 设置 TitleLabel ； 设置顶部的线段
  二、封装 PageContentView
  三、处理 PageTitleView & PageContentView 的逻辑
+    1、PageTitleView 中发生点击；—— 将PageTitleVIew 中逻辑进行处理——>告知 PageTitleVIew 滚动到正确的控制器
 */
 
 import UIKit
@@ -21,11 +22,14 @@ private let kTitleViewH: CGFloat = 40
 class HomeViewController: UIViewController {
 
     // MASK:-懒加载属性（1、延迟加载，减少内存的消耗；2、可以解除报包的烦恼）
-    private lazy var pageTitleView: PageTitleView = {
+    private lazy var pageTitleView: PageTitleView = { [weak self] in
         
         let titleFrame = CGRect(x: 0, y: kStatusBarH + kNavigationH, width:kScreenW, height: kTitleViewH)
         let titles = ["推荐", "游戏", "娱乐", "趣玩"]
         let titleView = PageTitleView(frame: titleFrame, titles: titles)
+        
+        // 出现代理
+        titleView.delegate = self
         
         //设置 titleViewf 的背景颜色
         // titleView.backgroundColor = UIColor.purple
@@ -34,7 +38,7 @@ class HomeViewController: UIViewController {
     }()
     
     // MASK:-懒加载属性（1、延迟加载，减少内存的消耗；2、可以解除报包的烦恼）
-    private lazy var pageContentView: PageContentView = {
+    private lazy var pageContentView: PageContentView = { [weak self] in
         
         // 1、确定内容的 frame
         let contentH = kScreenH - kStatusBarH - kNavigationH - kTitleViewH
@@ -53,7 +57,7 @@ class HomeViewController: UIViewController {
             
         }
         
-        let contentView  = PageContentView(frame: contentFrame, childVcs: childVcs, parentViewController: self)
+        let contentView  = PageContentView(frame: contentFrame, childVcs: childVcs, parentViewController: self )
         
         return contentView
     } ()
@@ -165,5 +169,13 @@ extension HomeViewController {
         // 右侧三个按钮数组-BarButtonItems
         navigationItem.rightBarButtonItems = [historyItem, searchItem, qrcodeItem]     // 设置数组
         */
+    }
+}
+
+// MASK:-遵守 PageTitleViewDelegate 协议
+extension HomeViewController: PageContentViewDelegate {
+    func pageTitleView(titleView: PageTitleView, selectedIndex index: Int) {
+          //  print(index)
+        pageContentView.setCurrentIndex(currentIndex: index)
     }
 }
